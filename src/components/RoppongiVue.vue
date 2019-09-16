@@ -32,7 +32,7 @@ export default {
   watch: {
     isFinished(_new) {
       if (_new) {
-        console.log("Animation End");
+        window.location.href = "https://roppongi-vue.connpass.com/";
       }
     }
   },
