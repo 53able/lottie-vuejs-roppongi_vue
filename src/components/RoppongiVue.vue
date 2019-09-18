@@ -7,7 +7,6 @@
       :width="null"
       class="cover"
       @AnimControl="setAnimController"
-      ref="lottie"
     />
   </div>
 </template>
@@ -24,28 +23,18 @@
 <script>
 export default {
   name: "RoppongiVue",
-  data() {
-    return {
-      isFinished: false
-    };
-  },
-  watch: {
-    isFinished(_new) {
-      if (_new) {
-        window.location.href = "https://roppongi-vue.connpass.com/";
-      }
-    }
-  },
   methods: {
     setAnimController(anim) {
-      let animloop = () => {
-        if (anim.isPaused) {
-          this.isFinished = true;
-          return;
-        }
-        window.requestAnimationFrame(animloop);
+      const watch = (obj, propName, fnc) => {
+        Object.defineProperty(obj, propName, {
+          set: newValue => fnc(newValue)
+        });
       };
-      animloop();
+      watch(anim, "isPaused", flg => {
+        if (flg) {
+          window.location.href = "https://roppongi-vue.connpass.com/";
+        }
+      });
     }
   }
 };
