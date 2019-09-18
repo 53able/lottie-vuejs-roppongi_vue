@@ -25,16 +25,10 @@ export default {
   name: "RoppongiVue",
   methods: {
     setAnimController(anim) {
-      const watch = (obj, propName, fnc) => {
-        Object.defineProperty(obj, propName, {
-          set: newValue => fnc(newValue)
-        });
-      };
-      watch(anim, "isPaused", flg => {
-        if (flg) {
-          window.location.href = "https://roppongi-vue.connpass.com/";
-        }
-      });
+      anim.addEventListener(
+        "complete",
+        () => (window.location.href = "https://roppongi-vue.connpass.com/")
+      );
     }
   }
 };
