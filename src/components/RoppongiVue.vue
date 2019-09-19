@@ -3,6 +3,7 @@
     <lottie-animation
       path="roppongivueanime.json"
       :loop="false"
+      :autoPlay="true"
       :height="null"
       :width="null"
       class="cover"
